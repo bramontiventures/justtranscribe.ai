@@ -25,10 +25,10 @@ const perform = async (z, bundle) => {
     // Returned now, completed by performResume when the webhook arrives.
     return { id: created.id, status: created.status, queued: created.queued === true };
   }
-  if (wait) {
-    return shapeTranscript(await pollBriefly(z, created.id, 25000));
-  }
-  return shapeTranscript(await pollBriefly(z, created.id, 0));
+  // Editor "Test step" runs have a hard 30-second budget that also covers
+  // everything above — poll only briefly and return whatever status we have
+  // (the published Zap waits properly via the callback).
+  return shapeTranscript(await pollBriefly(z, created.id, wait ? 12000 : 0));
 };
 
 const performResume = async (z, bundle) => {

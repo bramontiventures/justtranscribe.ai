@@ -28,8 +28,14 @@ const perform = async (z, bundle) => {
   const response = await z.request({ method: 'POST', url: `${BASE_URL}/api/v1/transcripts`, body: form });
   const created = response.data;
 
-  if (useCallback) return { id: created.id, status: created.status, queued: created.queued === true };
-  return shapeTranscript(await pollBriefly(z, created.id, wait ? 25000 : 0));
+  if (useCallback) {
+    // Returned now, completed by performResume when the webhook arrives.
+    return { id: created.id, status: created.status, queued: created.queued === true };
+  }
+  // Editor "Test step" runs have a hard 30-second budget that also covers
+  // everything above — poll only briefly and return whatever status we have
+  // (the published Zap waits properly via the callback).
+  return shapeTranscript(await pollBriefly(z, created.id, wait ? 8000 : 0));
 };
 
 const performResume = async (z, bundle) => {
