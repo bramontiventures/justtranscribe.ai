@@ -44,7 +44,7 @@ module.exports = {
   key: 'create_transcript_file',
   noun: 'Transcript',
   display: {
-    label: 'Create Transcript from File',
+    label: 'Create Transcript From File',
     description: 'Transcribes an audio or video file (MP3, WAV, M4A, OGG/OPUS — WhatsApp voice notes — FLAC, MP4, MOV, WEBM, MKV; up to 500 MB / 150 minutes).',
   },
   operation: {

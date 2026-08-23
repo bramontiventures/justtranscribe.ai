@@ -43,7 +43,7 @@ module.exports = {
   key: 'create_transcript_url',
   noun: 'Transcript',
   display: {
-    label: 'Create Transcript from URL',
+    label: 'Create Transcript From URL',
     description: 'Transcribes a public YouTube, TikTok, Instagram, Facebook, Pinterest or Google Drive video.',
   },
   operation: {
