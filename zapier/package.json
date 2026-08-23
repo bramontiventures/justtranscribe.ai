@@ -1,0 +1,25 @@
+{
+  "name": "justtranscribe",
+  "version": "1.0.0",
+  "description": "JustTranscribe integration for Zapier \u2014 transcribe audio/video files and public video links into timestamped text, with SRT/TXT/DOCX exports.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "jest --testTimeout 60000",
+    "validate": "zapier-platform validate --without-style",
+    "push": "zapier-platform push"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10.7.0"
+  },
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "zapier-platform-core": "19.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nock": "^13.5.4",
+    "zapier-platform-cli": "19.1.0"
+  }
+}
