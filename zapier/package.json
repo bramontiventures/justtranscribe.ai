@@ -1,6 +1,6 @@
 {
   "name": "justtranscribe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JustTranscribe integration for Zapier \u2014 transcribe audio/video files and public video links into timestamped text, with SRT/TXT/DOCX exports.",
   "main": "index.js",
   "private": true,

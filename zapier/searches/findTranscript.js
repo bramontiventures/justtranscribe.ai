@@ -22,7 +22,7 @@ module.exports = {
   },
   operation: {
     perform,
-    inputFields: [{ key: 'transcript_id', label: 'Transcript ID', type: 'string', required: true }],
+    inputFields: [{ key: 'transcript_id', label: 'Transcript', type: 'string', required: true, dynamic: 'transcript_completed.id.title', helpText: 'Pick a recent transcript, or map an ID from a previous step.' }],
     sample: SAMPLE_TRANSCRIPT,
     outputFields: TRANSCRIPT_OUTPUT_FIELDS,
   },

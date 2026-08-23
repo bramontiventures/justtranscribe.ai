@@ -41,7 +41,7 @@ module.exports = {
   operation: {
     perform,
     inputFields: [
-      { key: 'transcript_id', label: 'Transcript ID', type: 'string', required: true, helpText: 'From "Create Transcript" or the "Transcript Completed" trigger.' },
+      { key: 'transcript_id', label: 'Transcript', type: 'string', required: true, dynamic: 'transcript_completed.id.title', helpText: 'Pick a recent transcript, or map the ID from "Create Transcript" / the "Transcript Completed" trigger.' },
       {
         key: 'format',
         label: 'Format',
