@@ -78,19 +78,32 @@ Make also rewrites `rpc://listTranscripts` into its fully-qualified form
 (`rpc://app%23<app>@1/listTranscripts`) when it stores a section, so the
 short name in the source is correct and portable.
 
-### To verify on the first real deploy
+### Verified against production (2026-08-25)
 
-Three things this repo cannot check offline, because only Make can evaluate
-them. Check them in the Make DevTool the first time the app runs:
+Every module was run in real Make scenarios against justtranscribe.ai:
+
+| Module | Evidence |
+| --- | --- |
+| Connection | `verified: true`; debug log shows the auth header as `***` |
+| Watch Completed Transcripts | 3 bundles, 82 KB — full text inline |
+| Watch Transcript Events | a real completion webhook from the pipeline fired the scenario |
+| Transcribe a Media URL | with *Wait* on, returned a complete transcript bundle |
+| Transcribe a File | an 82 KB `.opus` voice note → Spanish transcript, inside the 40 s budget |
+| Get a Transcript | chained off `{{1.id}}` |
+| Download a Transcript | SRT file bundle |
+| Delete a Transcript | row gone from the account |
+| List Transcripts | honoured its limit exactly |
+| Make an API Call | `GET /v1/me` |
+| Error handling | a missing ID surfaces our message as a `DataError` |
+
+Still unproven, because it needs more than one page of data:
 
 - **Pagination offset.** The list and trigger modules send
-  `offset = (pagination.page - 1) * 100` on pagination requests only.
-  Confirm the second request asks for `offset=100`, not `offset=0` —
-  Make's `pagination.page` counter starting point is documented ambiguously.
-- **The downloaded file name**, parsed out of `content-disposition` with a
-  fallback of `transcript.<format>` if the expression does not resolve.
-- **`response.type` per status** on the download module — `binary` for the
-  file, `json` for a 4xx so the error message still reads properly.
+  `offset = (pagination.page - 1) * 100` on pagination requests only, so it
+  only fires on an account with more than 100 transcripts. Confirm the
+  second request asks for `offset=100`, not `offset=0` — Make's
+  `pagination.page` starting point is documented ambiguously, and Make's
+  reviewers ask for a log that shows pagination working.
 
 `.imljson` files are Make's IML JSON — the same content the Make web editor
 and the VS Code *Make Apps Editor* extension show for each section.
