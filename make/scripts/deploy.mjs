@@ -108,7 +108,10 @@ async function ensureApp() {
     return;
   }
   console.log(`app: creating ${manifest.app.name}`);
-  const created = await api("POST", "/sdk/apps", { body: { app: { ...manifest.app, version } } });
+  // Flat body — the endpoint wraps the app in `app` on the way OUT only;
+  // sending it wrapped fails with "Missing value of required parameter
+  // 'label'" (Make's own OpenAPI shows the wrapper; it is wrong).
+  const created = await api("POST", "/sdk/apps", { body: { ...manifest.app, version } });
   // Make appends a numeric suffix when the name is taken, so always trust the
   // name it hands back rather than the one we asked for.
   state.appName = created?.app?.name ?? manifest.app.name;
@@ -224,6 +227,11 @@ async function deployModules() {
       await api("POST", `/sdk/apps/${state.appName}/${version}/modules`, {
         body: { name: spec.name, typeId: spec.typeId, moduleInitMode: "blank", ...body },
       });
+      // Create silently drops `webhook` — an instant trigger comes back with
+      // no webhook attached unless it is patched in afterwards.
+      if (spec.webhook) {
+        await api("PATCH", `/sdk/apps/${state.appName}/${version}/modules/${spec.name}`, { body });
+      }
     }
     for (const section of SECTION_FILES) {
       await putSection(

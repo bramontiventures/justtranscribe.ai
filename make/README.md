@@ -63,6 +63,21 @@ scripts/check.mjs         offline lint: JSON, module sections, rpc:// refs, IML,
 scripts/deploy.mjs        create/update the app in Make through the SDK Apps API
 ```
 
+### Two quirks in Make's SDK API
+
+Both cost a failed deploy before they were found; `scripts/deploy.mjs`
+handles them, but they are not in Make's docs:
+
+- **`POST /sdk/apps` takes a flat body.** Their OpenAPI shows the app
+  wrapped in an `app` key — sending it that way fails with *"Missing value
+  of required parameter 'label'"*. The wrapper exists on the response only.
+- **`POST …/modules` silently ignores `webhook`.** An instant trigger comes
+  back with no webhook attached; it has to be PATCHed in afterwards.
+
+Make also rewrites `rpc://listTranscripts` into its fully-qualified form
+(`rpc://app%23<app>@1/listTranscripts`) when it stores a section, so the
+short name in the source is correct and portable.
+
 ### To verify on the first real deploy
 
 Three things this repo cannot check offline, because only Make can evaluate
