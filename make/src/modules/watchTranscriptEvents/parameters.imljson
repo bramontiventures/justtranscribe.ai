@@ -1,0 +1,8 @@
+[
+	{
+		"type": "banner",
+		"theme": "info",
+		"title": "Where to paste this webhook URL",
+		"text": "Copy the address above, then paste it into the **Webhook URL** field of a **Transcribe a Media URL** or **Transcribe a File** module — in this scenario or any other. JustTranscribe posts the finished transcript here once, as soon as it is ready, so nothing has to poll. The same URL also works in the `webhookUrl` field of the public API."
+	}
+]

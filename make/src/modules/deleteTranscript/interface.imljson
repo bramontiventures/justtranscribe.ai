@@ -1,0 +1,12 @@
+[
+	{
+		"name": "id",
+		"type": "text",
+		"label": "Transcript ID"
+	},
+	{
+		"name": "deleted",
+		"type": "boolean",
+		"label": "Deleted"
+	}
+]

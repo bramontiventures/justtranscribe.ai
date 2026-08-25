@@ -1,0 +1,99 @@
+{
+	"app": {
+		"name": "justtranscribe",
+		"label": "JustTranscribe",
+		"description": "Turn audio files, voice notes, meetings and public video links into searchable, timestamped text.",
+		"theme": "#4f46e5",
+		"language": "en",
+		"version": 1
+	},
+	"connection": {
+		"dir": "justtranscribe",
+		"type": "apikey",
+		"label": "JustTranscribe API key"
+	},
+	"webhooks": [
+		{
+			"dir": "transcriptEvents",
+			"type": "web",
+			"label": "Transcript finished"
+		}
+	],
+	"rpcs": [
+		{
+			"name": "listTranscripts",
+			"label": "List transcripts",
+			"connection": true
+		}
+	],
+	"modules": [
+		{
+			"name": "watchCompletedTranscripts",
+			"typeId": 1,
+			"label": "Watch Completed Transcripts",
+			"description": "Triggers when a transcript finishes processing.",
+			"connection": true
+		},
+		{
+			"name": "watchTranscriptEvents",
+			"typeId": 10,
+			"label": "Watch Transcript Events",
+			"description": "Triggers the moment a transcript sent to this webhook URL finishes or fails.",
+			"webhook": true
+		},
+		{
+			"name": "transcribeUrl",
+			"typeId": 4,
+			"crud": "create",
+			"label": "Transcribe a Media URL",
+			"description": "Starts a transcription from a public video or audio link.",
+			"connection": true
+		},
+		{
+			"name": "transcribeFile",
+			"typeId": 4,
+			"crud": "create",
+			"label": "Transcribe a File",
+			"description": "Uploads an audio or video file and starts its transcription.",
+			"connection": true
+		},
+		{
+			"name": "getTranscript",
+			"typeId": 4,
+			"crud": "read",
+			"label": "Get a Transcript",
+			"description": "Returns one transcript with its text, segments and AI analysis.",
+			"connection": true
+		},
+		{
+			"name": "downloadTranscript",
+			"typeId": 4,
+			"crud": "read",
+			"label": "Download a Transcript",
+			"description": "Downloads a finished transcript as a file: SRT, VTT, TXT, MD, CSV, PDF or DOCX.",
+			"connection": true
+		},
+		{
+			"name": "deleteTranscript",
+			"typeId": 4,
+			"crud": "delete",
+			"label": "Delete a Transcript",
+			"description": "Deletes a transcript and the stored media that belongs to it.",
+			"connection": true
+		},
+		{
+			"name": "listTranscripts",
+			"typeId": 9,
+			"label": "List Transcripts",
+			"description": "Returns the transcripts on the connected account, newest first.",
+			"connection": true
+		},
+		{
+			"name": "makeApiCall",
+			"typeId": 12,
+			"label": "Make an API Call",
+			"description": "Performs an arbitrary authorized API call.",
+			"connection": true
+		}
+	]
+}

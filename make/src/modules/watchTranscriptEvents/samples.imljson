@@ -1,0 +1,52 @@
+{
+	"event": "transcript.completed",
+	"id": "3f1c2b7e-9a1d-4c55-8e21-7b0f6a9d2e10",
+	"status": "complete",
+	"title": "Team sync - budget review",
+	"language": "spanish",
+	"durationSec": 42,
+	"platform": "youtube",
+	"url": "https://www.youtube.com/watch?v=jNQXAC9IVRw",
+	"createdAt": "2026-08-25T10:15:00.000Z",
+	"completedAt": "2026-08-25T10:16:04.000Z",
+	"error": null,
+	"text": "Buenos días a todos. Hoy revisamos el presupuesto del tercer trimestre.\nEl gasto en publicidad subió un doce por ciento.",
+	"segmentCount": 2,
+	"segments": [
+		{
+			"start": 0,
+			"end": 4.2,
+			"text": "Buenos días a todos. Hoy revisamos el presupuesto del tercer trimestre."
+		},
+		{
+			"start": 4.6,
+			"end": 8.1,
+			"text": "El gasto en publicidad subió un doce por ciento."
+		}
+	],
+	"summary": "A short budget review: ad spend rose twelve percent in the third quarter.",
+	"analysis": {
+		"main_idea": "A short budget review: ad spend rose twelve percent in the third quarter.",
+		"narrative_summary": "The speaker opens the quarterly review, walks through the advertising line, and flags the increase for discussion.",
+		"script_structure": [
+			"Greeting",
+			"Agenda",
+			"Numbers"
+		],
+		"topic_format": {
+			"primary_topic": "Business finance",
+			"format": "Meeting recording",
+			"tags": [
+				"budget",
+				"quarterly review",
+				"advertising"
+			]
+		}
+	},
+	"metrics": {
+		"total_words": 21,
+		"wpm": 132,
+		"pace_label": "measured"
+	},
+	"viewUrl": "https://justtranscribe.ai/analysis/3f1c2b7e-9a1d-4c55-8e21-7b0f6a9d2e10"
+}

@@ -1,0 +1,10 @@
+[
+	{
+		"name": "transcriptId",
+		"type": "select",
+		"label": "Transcript ID",
+		"required": true,
+		"options": "rpc://listTranscripts",
+		"help": "The transcript to delete. This also removes the stored audio or video and cannot be undone."
+	}
+]

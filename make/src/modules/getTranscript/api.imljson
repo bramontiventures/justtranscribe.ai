@@ -1,0 +1,39 @@
+{
+	"url": "/transcripts/{{parameters.transcriptId}}",
+	"method": "GET",
+	"response": {
+		"error": {
+			"404": {
+				"message": "[404] No transcript with that ID on this account. It may have been deleted, or it belongs to a different JustTranscribe account.",
+				"type": "DataError"
+			}
+		},
+		"temp": {
+			"status": "{{body.status}}"
+		},
+		"output": {
+			"id": "{{body.id}}",
+			"status": "{{body.status}}",
+			"title": "{{body.title}}",
+			"language": "{{body.language}}",
+			"durationSec": "{{body.durationSec}}",
+			"platform": "{{body.platform}}",
+			"url": "{{body.url}}",
+			"createdAt": "{{parseDate(body.createdAt)}}",
+			"completedAt": "{{if(body.completedAt, parseDate(body.completedAt), null)}}",
+			"error": "{{body.error}}",
+			"text": "{{body.text}}",
+			"segmentCount": "{{if(body.transcript, length(body.transcript.segments), 0)}}",
+			"segments": "{{body.transcript.segments}}",
+			"summary": "{{body.analysis.main_idea}}",
+			"analysis": "{{body.analysis}}",
+			"metrics": "{{body.metrics}}",
+			"viewUrl": "https://justtranscribe.ai/analysis/{{body.id}}"
+		}
+	},
+	"repeat": {
+		"condition": "{{parameters.wait && temp.status != 'complete' && temp.status != 'failed'}}",
+		"delay": 3000,
+		"limit": 11
+	}
+}

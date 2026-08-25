@@ -1,0 +1,16 @@
+{
+	"url": "/transcripts/{{parameters.transcriptId}}",
+	"method": "DELETE",
+	"response": {
+		"error": {
+			"404": {
+				"message": "[404] No transcript with that ID on this account. It may already have been deleted.",
+				"type": "DataError"
+			}
+		},
+		"output": {
+			"id": "{{body.id}}",
+			"deleted": "{{body.deleted}}"
+		}
+	}
+}

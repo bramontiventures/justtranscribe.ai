@@ -1,0 +1,15 @@
+{
+	"qs": {
+		"sort": "completedAt",
+		"status": "{{if(parameters.status = 'any', undefined, parameters.status)}}",
+		"include": "{{undefined}}",
+		"limit": 100
+	},
+	"response": {
+		"limit": 100,
+		"output": {
+			"label": "{{ifempty(item.title, item.id)}}",
+			"date": "{{item.completedAt}}"
+		}
+	}
+}

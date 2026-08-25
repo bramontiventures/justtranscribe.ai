@@ -1,0 +1,11 @@
+{
+	"statusCode": 200,
+	"headers": {
+		"content-type": "application/json"
+	},
+	"body": {
+		"userId": "u_7c1f",
+		"name": "Unai",
+		"plan": "beta"
+	}
+}

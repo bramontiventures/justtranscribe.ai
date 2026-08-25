@@ -1,0 +1,84 @@
+[
+	{
+		"name": "url",
+		"type": "text",
+		"label": "URL",
+		"required": true,
+		"help": "Enter a path relative to `https://justtranscribe.ai/api`.\nFor example: `/v1/transcripts`\n\nFull reference: [justtranscribe.ai/developers](https://justtranscribe.ai/developers)"
+	},
+	{
+		"name": "method",
+		"type": "select",
+		"label": "Method",
+		"required": true,
+		"default": "GET",
+		"options": [
+			{
+				"label": "GET",
+				"value": "GET"
+			},
+			{
+				"label": "POST",
+				"value": "POST"
+			},
+			{
+				"label": "PUT",
+				"value": "PUT"
+			},
+			{
+				"label": "PATCH",
+				"value": "PATCH"
+			},
+			{
+				"label": "DELETE",
+				"value": "DELETE"
+			}
+		]
+	},
+	{
+		"name": "headers",
+		"type": "array",
+		"label": "Headers",
+		"help": "You don't have to add the authorization header; the connection already does that.",
+		"default": [
+			{
+				"key": "Content-Type",
+				"value": "application/json"
+			}
+		],
+		"spec": [
+			{
+				"name": "key",
+				"type": "text",
+				"label": "Key"
+			},
+			{
+				"name": "value",
+				"type": "text",
+				"label": "Value"
+			}
+		]
+	},
+	{
+		"name": "qs",
+		"type": "array",
+		"label": "Query String",
+		"spec": [
+			{
+				"name": "key",
+				"type": "text",
+				"label": "Key"
+			},
+			{
+				"name": "value",
+				"type": "text",
+				"label": "Value"
+			}
+		]
+	},
+	{
+		"name": "body",
+		"type": "any",
+		"label": "Body"
+	}
+]

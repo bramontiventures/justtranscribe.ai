@@ -1,0 +1,9 @@
+[
+	{
+		"name": "apiKey",
+		"type": "password",
+		"label": "API key",
+		"required": true,
+		"help": "Create a free key at [justtranscribe.ai](https://justtranscribe.ai/api-keys) under **API** (or Profile > API keys). It starts with `jt_live_` and is shown only once — copy it before closing the dialog."
+	}
+]

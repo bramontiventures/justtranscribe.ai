@@ -1,0 +1,18 @@
+[
+	{
+		"name": "transcriptId",
+		"type": "select",
+		"label": "Transcript ID",
+		"required": true,
+		"options": "rpc://listTranscripts",
+		"help": "Pick one of your recent transcripts, or map the ID returned by a **Transcribe** module."
+	},
+	{
+		"name": "wait",
+		"type": "boolean",
+		"label": "Wait until it is finished",
+		"required": true,
+		"default": false,
+		"help": "Keep checking until the transcript is complete or failed, for up to about 30 seconds. Make stops any module after 40 seconds, so for long recordings leave this off and drive the scenario from the **Watch Completed Transcripts** trigger instead."
+	}
+]

@@ -1,0 +1,41 @@
+{
+	"url": "/transcripts",
+	"method": "GET",
+	"qs": {
+		"sort": "completedAt",
+		"status": "{{if(parameters.status = 'any', undefined, parameters.status)}}",
+		"include": "text",
+		"limit": 100,
+		"offset": "{{(pagination.page - 1) * 100}}"
+	},
+	"response": {
+		"limit": "{{parameters.limit}}",
+		"iterate": "{{body.transcripts}}",
+		"output": {
+			"id": "{{item.id}}",
+			"status": "{{item.status}}",
+			"title": "{{item.title}}",
+			"language": "{{item.language}}",
+			"durationSec": "{{item.durationSec}}",
+			"platform": "{{item.platform}}",
+			"url": "{{item.url}}",
+			"createdAt": "{{parseDate(item.createdAt)}}",
+			"completedAt": "{{parseDate(item.completedAt)}}",
+			"error": "{{item.error}}",
+			"text": "{{item.text}}",
+			"viewUrl": "https://justtranscribe.ai/analysis/{{item.id}}"
+		},
+		"trigger": {
+			"type": "date",
+			"order": "desc",
+			"id": "{{item.id}}",
+			"date": "{{item.completedAt}}"
+		}
+	},
+	"pagination": {
+		"qs": {
+			"offset": "{{(pagination.page - 1) * 100}}"
+		},
+		"condition": "{{body.hasMore}}"
+	}
+}

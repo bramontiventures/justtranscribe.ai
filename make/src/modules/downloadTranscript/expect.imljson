@@ -1,0 +1,71 @@
+[
+	{
+		"name": "transcriptId",
+		"type": "select",
+		"label": "Transcript ID",
+		"required": true,
+		"options": "rpc://listTranscripts",
+		"help": "Pick one of your recent transcripts, or map the ID returned by a **Transcribe** module. The transcript has to be finished."
+	},
+	{
+		"name": "format",
+		"type": "select",
+		"label": "Format",
+		"required": true,
+		"default": "srt",
+		"options": [
+			{
+				"label": "SRT subtitles",
+				"value": "srt"
+			},
+			{
+				"label": "WebVTT subtitles",
+				"value": "vtt"
+			},
+			{
+				"label": "Plain text",
+				"value": "txt"
+			},
+			{
+				"label": "Markdown",
+				"value": "md"
+			},
+			{
+				"label": "CSV",
+				"value": "csv"
+			},
+			{
+				"label": "PDF",
+				"value": "pdf"
+			},
+			{
+				"label": "Word document",
+				"value": "docx"
+			}
+		]
+	},
+	{
+		"name": "timestamps",
+		"type": "boolean",
+		"label": "Include timestamps",
+		"required": true,
+		"default": true,
+		"help": "Adds a time in front of every line. Subtitle formats always keep their cue timings, whatever you choose here."
+	},
+	{
+		"name": "speakers",
+		"type": "boolean",
+		"label": "Include speaker labels",
+		"required": true,
+		"default": false,
+		"help": "Adds Speaker 1 / Speaker 2 labels. Only works when the transcript has already been diarized in the JustTranscribe app — the export never starts a new speaker detection, it exports unlabelled instead."
+	},
+	{
+		"name": "includeAnalysis",
+		"type": "boolean",
+		"label": "Include the AI analysis",
+		"required": true,
+		"default": false,
+		"help": "Folds the summary, key moments and pace metrics into the document. Applies to Markdown, PDF and Word only."
+	}
+]

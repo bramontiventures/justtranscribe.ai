@@ -1,0 +1,56 @@
+[
+	{
+		"url": "/transcripts",
+		"method": "POST",
+		"type": "multipart/form-data",
+		"body": {
+			"file": {
+				"value": "{{parameters.data}}",
+				"options": {
+					"filename": "{{parameters.fileName}}"
+				}
+			},
+			"webhook_url": "{{ifempty(parameters.webhookUrl, undefined)}}"
+		},
+		"response": {
+			"temp": {
+				"id": "{{body.id}}",
+				"status": "{{body.status}}"
+			},
+			"output": null
+		}
+	},
+	{
+		"url": "/transcripts/{{temp.id}}",
+		"method": "GET",
+		"response": {
+			"temp": {
+				"status": "{{body.status}}"
+			},
+			"output": {
+				"id": "{{body.id}}",
+				"status": "{{body.status}}",
+				"title": "{{body.title}}",
+				"language": "{{body.language}}",
+				"durationSec": "{{body.durationSec}}",
+				"platform": "{{body.platform}}",
+				"url": "{{body.url}}",
+				"createdAt": "{{parseDate(body.createdAt)}}",
+				"completedAt": "{{if(body.completedAt, parseDate(body.completedAt), null)}}",
+				"error": "{{body.error}}",
+				"text": "{{body.text}}",
+				"segmentCount": "{{if(body.transcript, length(body.transcript.segments), 0)}}",
+				"segments": "{{body.transcript.segments}}",
+				"summary": "{{body.analysis.main_idea}}",
+				"analysis": "{{body.analysis}}",
+				"metrics": "{{body.metrics}}",
+				"viewUrl": "https://justtranscribe.ai/analysis/{{body.id}}"
+			}
+		},
+		"repeat": {
+			"condition": "{{parameters.wait && temp.status != 'complete' && temp.status != 'failed'}}",
+			"delay": 3000,
+			"limit": 6
+		}
+	}
+]

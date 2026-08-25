@@ -1,0 +1,15 @@
+{
+	"url": "/transcripts",
+	"method": "GET",
+	"qs": {
+		"limit": 100
+	},
+	"response": {
+		"limit": 100,
+		"iterate": "{{body.transcripts}}",
+		"output": {
+			"label": "{{ifempty(item.title, item.id)}} ({{item.status}}, {{formatDate(parseDate(item.createdAt), 'D MMM YYYY')}})",
+			"value": "{{item.id}}"
+		}
+	}
+}

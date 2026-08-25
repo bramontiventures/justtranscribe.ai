@@ -1,0 +1,25 @@
+{
+	"url": "https://justtranscribe.ai/api/v1/me",
+	"method": "GET",
+	"headers": {
+		"authorization": "Bearer {{parameters.apiKey}}"
+	},
+	"response": {
+		"error": {
+			"message": "[{{statusCode}}] {{ifempty(body.error, 'Could not verify this API key.')}}",
+			"401": {
+				"message": "That API key was not accepted. Copy it again from justtranscribe.ai (Profile > API keys) — keys start with jt_live_ and are shown only once."
+			}
+		},
+		"metadata": {
+			"type": "text",
+			"value": "{{ifempty(body.name, 'JustTranscribe account')}}"
+		},
+		"uid": "{{body.userId}}"
+	},
+	"log": {
+		"sanitize": [
+			"request.headers.authorization"
+		]
+	}
+}

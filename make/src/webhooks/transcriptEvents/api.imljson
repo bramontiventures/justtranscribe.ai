@@ -1,0 +1,29 @@
+{
+	"respond": {
+		"status": 200,
+		"type": "json",
+		"body": {
+			"received": true
+		}
+	},
+	"output": {
+		"event": "{{body.event}}",
+		"id": "{{body.id}}",
+		"status": "{{body.status}}",
+		"title": "{{body.title}}",
+		"language": "{{body.language}}",
+		"durationSec": "{{body.durationSec}}",
+		"platform": "{{body.platform}}",
+		"url": "{{body.url}}",
+		"createdAt": "{{parseDate(body.createdAt)}}",
+		"completedAt": "{{if(body.completedAt, parseDate(body.completedAt), null)}}",
+		"error": "{{body.error}}",
+		"text": "{{body.text}}",
+		"segmentCount": "{{if(body.transcript, length(body.transcript.segments), 0)}}",
+		"segments": "{{body.transcript.segments}}",
+		"summary": "{{body.analysis.main_idea}}",
+		"analysis": "{{body.analysis}}",
+		"metrics": "{{body.metrics}}",
+		"viewUrl": "https://justtranscribe.ai/analysis/{{body.id}}"
+	}
+}

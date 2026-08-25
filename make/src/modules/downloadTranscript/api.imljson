@@ -1,0 +1,29 @@
+{
+	"url": "/transcripts/{{parameters.transcriptId}}/export/{{parameters.format}}",
+	"method": "GET",
+	"qs": {
+		"ts": "{{if(parameters.timestamps, undefined, '0')}}",
+		"sp": "{{if(parameters.speakers, '1', undefined)}}",
+		"full": "{{if(parameters.includeAnalysis, '1', undefined)}}"
+	},
+	"response": {
+		"type": {
+			"*": "binary",
+			"400-599": "json"
+		},
+		"error": {
+			"404": {
+				"message": "[404] No transcript with that ID on this account.",
+				"type": "DataError"
+			},
+			"409": {
+				"message": "[409] {{ifempty(body.error, 'This transcript is not finished yet — export it once its status is complete.')}}",
+				"type": "DataError"
+			}
+		},
+		"output": {
+			"fileName": "{{ifempty(replace(headers.`content-disposition`, '/^.*filename=\"|\"\\s*$/g', ''), 'transcript.' + parameters.format)}}",
+			"data": "{{body}}"
+		}
+	}
+}

@@ -1,0 +1,32 @@
+[
+	{
+		"name": "status",
+		"type": "select",
+		"label": "Watch",
+		"required": true,
+		"default": "complete",
+		"options": [
+			{
+				"label": "Transcripts that completed",
+				"value": "complete"
+			},
+			{
+				"label": "Transcripts that failed",
+				"value": "failed"
+			},
+			{
+				"label": "Both completed and failed",
+				"value": "any"
+			}
+		],
+		"help": "Watching both is useful when the scenario should also react to a link JustTranscribe could not fetch — the bundle then carries the reason in **Error**."
+	},
+	{
+		"name": "limit",
+		"type": "uinteger",
+		"label": "Limit",
+		"required": true,
+		"default": 10,
+		"help": "Maximum number of transcripts Make will return during one execution cycle."
+	}
+]

@@ -1,0 +1,174 @@
+[
+	{
+		"name": "event",
+		"type": "text",
+		"label": "Event"
+	},
+	{
+		"name": "id",
+		"type": "text",
+		"label": "Transcript ID"
+	},
+	{
+		"name": "status",
+		"type": "text",
+		"label": "Status"
+	},
+	{
+		"name": "title",
+		"type": "text",
+		"label": "Title"
+	},
+	{
+		"name": "language",
+		"type": "text",
+		"label": "Detected language"
+	},
+	{
+		"name": "durationSec",
+		"type": "number",
+		"label": "Duration (seconds)"
+	},
+	{
+		"name": "platform",
+		"type": "text",
+		"label": "Source"
+	},
+	{
+		"name": "url",
+		"type": "url",
+		"label": "Source URL"
+	},
+	{
+		"name": "createdAt",
+		"type": "date",
+		"label": "Created"
+	},
+	{
+		"name": "completedAt",
+		"type": "date",
+		"label": "Finished"
+	},
+	{
+		"name": "error",
+		"type": "text",
+		"label": "Error"
+	},
+	{
+		"name": "text",
+		"type": "text",
+		"label": "Transcript"
+	},
+	{
+		"name": "segmentCount",
+		"type": "number",
+		"label": "Number of segments"
+	},
+	{
+		"name": "segments",
+		"type": "array",
+		"label": "Segments",
+		"spec": {
+			"type": "collection",
+			"spec": [
+				{
+					"name": "start",
+					"type": "number",
+					"label": "Start (seconds)"
+				},
+				{
+					"name": "end",
+					"type": "number",
+					"label": "End (seconds)"
+				},
+				{
+					"name": "text",
+					"type": "text",
+					"label": "Text"
+				}
+			]
+		}
+	},
+	{
+		"name": "summary",
+		"type": "text",
+		"label": "Summary"
+	},
+	{
+		"name": "analysis",
+		"type": "collection",
+		"label": "AI analysis",
+		"spec": [
+			{
+				"name": "main_idea",
+				"type": "text",
+				"label": "Main idea"
+			},
+			{
+				"name": "narrative_summary",
+				"type": "text",
+				"label": "Narrative summary"
+			},
+			{
+				"name": "script_structure",
+				"type": "array",
+				"label": "Script structure",
+				"spec": {
+					"type": "text"
+				}
+			},
+			{
+				"name": "topic_format",
+				"type": "collection",
+				"label": "Topic and format",
+				"spec": [
+					{
+						"name": "primary_topic",
+						"type": "text",
+						"label": "Primary topic"
+					},
+					{
+						"name": "format",
+						"type": "text",
+						"label": "Format"
+					},
+					{
+						"name": "tags",
+						"type": "array",
+						"label": "Tags",
+						"spec": {
+							"type": "text"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "metrics",
+		"type": "collection",
+		"label": "Pace metrics",
+		"spec": [
+			{
+				"name": "total_words",
+				"type": "number",
+				"label": "Total words"
+			},
+			{
+				"name": "wpm",
+				"type": "number",
+				"label": "Words per minute"
+			},
+			{
+				"name": "pace_label",
+				"type": "text",
+				"label": "Pace"
+			}
+		]
+	},
+	{
+		"name": "viewUrl",
+		"type": "url",
+		"label": "Open in JustTranscribe"
+	}
+]

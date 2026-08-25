@@ -1,0 +1,28 @@
+{
+	"baseUrl": "https://justtranscribe.ai/api/v1",
+	"headers": {
+		"authorization": "Bearer {{connection.apiKey}}"
+	},
+	"response": {
+		"error": {
+			"message": "[{{statusCode}}] {{ifempty(body.error, 'JustTranscribe returned an unexpected error.')}}",
+			"401": {
+				"message": "Your JustTranscribe API key is invalid or was revoked. Create a new key at justtranscribe.ai (Profile > API keys) and reconnect this app.",
+				"type": "InvalidAccessTokenError"
+			},
+			"403": {
+				"message": "[403] {{ifempty(body.error, 'This API key is not allowed to do that.')}}",
+				"type": "InvalidConfigurationError"
+			},
+			"429": {
+				"message": "{{ifempty(body.error, 'JustTranscribe rate limit reached. The scenario will retry automatically.')}}",
+				"type": "RateLimitError"
+			}
+		}
+	},
+	"log": {
+		"sanitize": [
+			"request.headers.authorization"
+		]
+	}
+}

@@ -1,0 +1,62 @@
+[
+	{
+		"name": "id",
+		"type": "text",
+		"label": "Transcript ID"
+	},
+	{
+		"name": "status",
+		"type": "text",
+		"label": "Status"
+	},
+	{
+		"name": "title",
+		"type": "text",
+		"label": "Title"
+	},
+	{
+		"name": "language",
+		"type": "text",
+		"label": "Detected language"
+	},
+	{
+		"name": "durationSec",
+		"type": "number",
+		"label": "Duration (seconds)"
+	},
+	{
+		"name": "platform",
+		"type": "text",
+		"label": "Source"
+	},
+	{
+		"name": "url",
+		"type": "url",
+		"label": "Source URL"
+	},
+	{
+		"name": "createdAt",
+		"type": "date",
+		"label": "Created"
+	},
+	{
+		"name": "completedAt",
+		"type": "date",
+		"label": "Finished"
+	},
+	{
+		"name": "error",
+		"type": "text",
+		"label": "Error"
+	},
+	{
+		"name": "text",
+		"type": "text",
+		"label": "Transcript"
+	},
+	{
+		"name": "viewUrl",
+		"type": "url",
+		"label": "Open in JustTranscribe"
+	}
+]
