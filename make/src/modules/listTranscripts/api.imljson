@@ -4,8 +4,7 @@
 	"qs": {
 		"status": "{{if(parameters.status = 'any', undefined, parameters.status)}}",
 		"include": "{{if(parameters.includeText, 'text', undefined)}}",
-		"limit": 100,
-		"offset": "{{(pagination.page - 1) * 100}}"
+		"limit": 100
 	},
 	"response": {
 		"limit": "{{parameters.limit}}",

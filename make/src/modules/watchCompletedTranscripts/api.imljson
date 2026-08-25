@@ -5,8 +5,7 @@
 		"sort": "completedAt",
 		"status": "{{if(parameters.status = 'any', undefined, parameters.status)}}",
 		"include": "text",
-		"limit": 100,
-		"offset": "{{(pagination.page - 1) * 100}}"
+		"limit": 100
 	},
 	"response": {
 		"limit": "{{parameters.limit}}",

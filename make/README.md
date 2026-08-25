@@ -63,6 +63,20 @@ scripts/check.mjs         offline lint: JSON, module sections, rpc:// refs, IML,
 scripts/deploy.mjs        create/update the app in Make through the SDK Apps API
 ```
 
+### To verify on the first real deploy
+
+Three things this repo cannot check offline, because only Make can evaluate
+them. Check them in the Make DevTool the first time the app runs:
+
+- **Pagination offset.** The list and trigger modules send
+  `offset = (pagination.page - 1) * 100` on pagination requests only.
+  Confirm the second request asks for `offset=100`, not `offset=0` —
+  Make's `pagination.page` counter starting point is documented ambiguously.
+- **The downloaded file name**, parsed out of `content-disposition` with a
+  fallback of `transcript.<format>` if the expression does not resolve.
+- **`response.type` per status** on the download module — `binary` for the
+  file, `json` for a 4xx so the error message still reads properly.
+
 `.imljson` files are Make's IML JSON — the same content the Make web editor
 and the VS Code *Make Apps Editor* extension show for each section.
 
