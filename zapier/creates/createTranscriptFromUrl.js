@@ -44,7 +44,7 @@ module.exports = {
   noun: 'Transcript',
   display: {
     label: 'Create Transcript From URL',
-    description: 'Transcribes a public YouTube, TikTok, Instagram, Facebook, Pinterest or Google Drive video.',
+    description: 'Transcribes audio or video from a publicly accessible URL and returns the text with timestamps.',
   },
   operation: {
     perform,
@@ -55,8 +55,8 @@ module.exports = {
         label: 'Video URL',
         type: 'string',
         required: true,
-        helpText: 'A public link. Private or login-only videos cannot be fetched — use "Create Transcript from File" for those.',
-        placeholder: 'https://www.youtube.com/watch?v=…',
+        helpText: 'A publicly accessible link to an audio or video file or page. Links that require a sign-in cannot be fetched — use "Create Transcript from File" for those.',
+        placeholder: 'https://example.com/recording.mp4',
       },
       {
         key: 'wait_for_completion',

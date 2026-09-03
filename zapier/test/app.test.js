@@ -107,11 +107,20 @@ describe('create: create_transcript_url', () => {
     expect(result.id).toBe('abc-123');
   });
 
-  test('API validation errors are shown verbatim', async () => {
+  // Zapier forbids naming specific third-party sites in user-facing text, and
+  // our API's own validation error lists them — so the relay rewrites it.
+  test('API validation errors surface without naming third-party platforms', async () => {
     nock(BASE).post('/api/v1/transcripts').reply(422, { error: "That doesn't look like a YouTube, TikTok, Instagram, Facebook, Pinterest, or Google Drive link." });
     await expect(
       appTester(App.creates.create_transcript_url.operation.perform, { authData, inputData: { url: 'https://example.com/x', wait_for_completion: false }, meta: { isLoadingSample: false } }),
-    ).rejects.toThrow(/doesn't look like a YouTube/);
+    ).rejects.toThrow(/not a supported public audio or video link/);
+  });
+
+  test('other API errors are still relayed verbatim', async () => {
+    nock(BASE).post('/api/v1/transcripts').reply(413, { error: "That's 240 minutes — the limit is 150 minutes per file." });
+    await expect(
+      appTester(App.creates.create_transcript_url.operation.perform, { authData, inputData: { url: 'https://example.com/x', wait_for_completion: false }, meta: { isLoadingSample: false } }),
+    ).rejects.toThrow(/the limit is 150 minutes/);
   });
 });
 

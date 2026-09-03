@@ -11,6 +11,19 @@ const addApiKey = (request, z, bundle) => {
   return request;
 };
 
+/**
+ * Zapier's publishing rules forbid naming specific third-party sites in any
+ * user-facing text (Partner review, 2026-08-31). Our API's URL-validation
+ * error lists the supported platforms by name — correct in our own app,
+ * not allowed once Zapier surfaces it — so relayed messages are rewritten
+ * here. Only the wording changes; the failure is identical.
+ */
+const PLATFORM_NAMES = /(youtube|tiktok|instagram|facebook|pinterest|google drive)/i;
+const genericise = (message) =>
+  PLATFORM_NAMES.test(message)
+    ? 'That URL is not a supported public audio or video link. Use a publicly accessible link, or "Create Transcript from File" for anything behind a sign-in.'
+    : message;
+
 /** Turn JustTranscribe's JSON errors into the right Zapier error types. */
 const handleErrors = (response, z) => {
   if (!response.request.url.startsWith(BASE_URL)) return response;
@@ -30,7 +43,7 @@ const handleErrors = (response, z) => {
     } catch (e) {
       // body not JSON
     }
-    throw new z.errors.ThrottledError(message, retryAfter);
+    throw new z.errors.ThrottledError(genericise(message), retryAfter);
   }
   // Callers that opted out of throwing (skipThrowForStatus) handle the rest themselves.
   if (response.status >= 400 && !response.skipThrowForStatus) {
@@ -40,7 +53,7 @@ const handleErrors = (response, z) => {
     } catch (e) {
       // body not JSON
     }
-    throw new z.errors.Error(message, 'JustTranscribeError', response.status);
+    throw new z.errors.Error(genericise(message), 'JustTranscribeError', response.status);
   }
   return response;
 };

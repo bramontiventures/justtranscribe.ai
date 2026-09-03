@@ -62,7 +62,7 @@ module.exports = {
         label: 'Audio or video file',
         type: 'file',
         required: true,
-        helpText: 'Map a file from a previous step (for example a Google Drive "New File", a Dropbox file, or an email attachment).',
+        helpText: 'Map a file from a previous step — for example a new file from a cloud storage app, or an email attachment.',
       },
       {
         key: 'filename',
