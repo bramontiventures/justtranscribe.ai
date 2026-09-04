@@ -26,7 +26,7 @@ module.exports = {
   noun: 'Transcript',
   display: {
     label: 'Transcript Completed',
-    description: 'Triggers when a transcript finishes processing on your JustTranscribe account.',
+    description: 'Triggers when a transcript finishes processing.',
   },
   operation: {
     type: 'polling',

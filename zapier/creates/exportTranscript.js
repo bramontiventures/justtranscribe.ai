@@ -51,7 +51,7 @@ module.exports = {
         choices: { srt: 'SRT subtitles', vtt: 'WebVTT subtitles', txt: 'Plain text', csv: 'CSV (segments)', md: 'Markdown', pdf: 'PDF', docx: 'Word (DOCX)' },
       },
       { key: 'include_timestamps', label: 'Include timestamps', type: 'boolean', default: 'true', helpText: 'SRT/VTT keep their cue timings regardless.' },
-      { key: 'include_speakers', label: 'Include speaker labels', type: 'boolean', default: 'false', helpText: 'Uses speaker detection already run on the transcript in JustTranscribe; never triggers a paid detection.' },
+      { key: 'include_speakers', label: 'Include speaker labels', type: 'boolean', default: 'false', helpText: 'Uses speaker detection already run on the transcript; never triggers a paid detection.' },
     ],
     sample: {
       id: '3f1c2b7e-9a1d-4c55-8e21-7b0f6a9d2e10',
