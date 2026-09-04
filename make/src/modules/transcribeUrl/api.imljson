@@ -19,7 +19,8 @@
 		"method": "GET",
 		"response": {
 			"temp": {
-				"status": "{{body.status}}"
+				"status": "{{body.status}}",
+				"polls": "{{ifempty(temp.polls, 0) + 1}}"
 			},
 			"output": {
 				"id": "{{body.id}}",
@@ -42,9 +43,9 @@
 			}
 		},
 		"repeat": {
-			"condition": "{{parameters.wait && temp.status != 'complete' && temp.status != 'failed'}}",
+			"condition": "{{parameters.wait && temp.status != 'complete' && temp.status != 'failed' && temp.polls < 9}}",
 			"delay": 3000,
-			"limit": 9
+			"limit": 10
 		}
 	}
 ]
